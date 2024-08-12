@@ -1,9 +1,11 @@
 import {combineReducers, configureStore} from "@reduxjs/toolkit";
 import countriesListSlice from "../../providers/slice/CountriesListSlice/CountriesListSlice";
+import countryDetailSlice from "../../providers/slice/CountrнDetailSlice/CountriesDetailSlice";
 
 const rootReducer = combineReducers({
 
-    countriesListSlice
+    countriesListSlice,
+    countryDetailSlice
 })
 
 export const setupStore =() => {

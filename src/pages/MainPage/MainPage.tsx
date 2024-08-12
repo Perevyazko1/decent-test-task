@@ -1,5 +1,6 @@
 import { ReactNode} from 'react';
 import {CustomTable} from "../../shared/ui/CustomTable/CustomTable";
+import {DetailPage} from "../DetailPage/DetailPage";
 
 
 interface MainPageProps {

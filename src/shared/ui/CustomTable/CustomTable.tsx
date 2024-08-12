@@ -9,9 +9,10 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import {Alert} from "@mui/lab";
-import {CircularProgress} from "@mui/material";
+import {Box, CircularProgress} from "@mui/material";
 import {useAppdispatch, useAppSelector} from "../../hooks/Redux/redux";
 import {countriesListSlice} from "../../../providers/slice/CountriesListSlice/CountriesListSlice";
+import {useNavigate} from "react-router-dom";
 
 
 interface CustomTableProps {
@@ -31,6 +32,7 @@ export const CustomTable = (props: CustomTableProps) => {
     const{listCountries} = useAppSelector(state => state.countriesListSlice)
     const{listCountriesApp} = countriesListSlice.actions
     const dispatch = useAppdispatch()
+    const navigate =useNavigate()
 
 
     const fetcData = async () => {
@@ -54,24 +56,25 @@ export const CustomTable = (props: CustomTableProps) => {
 
 
     return (
-        <div
+        <Box
+            sx={{bgcolor: 'background.paper'}}
         >
             <TableContainer component={Paper}>
                 {!loading && listCountries &&
                     <Table sx={{minWidth: 650}} aria-label="simple table">
                         <TableHead>
                             <TableRow>
-
-                                <TableCell>Страна</TableCell>
-                                <TableCell>Капитал</TableCell>
-                                <TableCell>Флаг</TableCell>
-                                <TableCell>Тайм-зона</TableCell>
-                            </TableRow>
+            <TableCell style={{ width: '25%' }}>Страна</TableCell>
+            <TableCell style={{ width: '25%' }}>Капитал</TableCell>
+            <TableCell style={{ width: '25%' }}>Флаг</TableCell>
+            <TableCell style={{ width: '25%' }}>Тайм-зона</TableCell>
+        </TableRow>
                         </TableHead>
                         <TableBody>
                             {listCountries && listCountries.map((row: CountriesType, index) => (
                                 <TableRow
                                     key={index}
+                                    onClick={()=> navigate(`detail/${row.name.common}`)}
                                     sx={{'&:last-child td, &:last-child th': {border: 0}}}
                                 >
 
@@ -93,6 +96,6 @@ export const CustomTable = (props: CustomTableProps) => {
             </TableContainer>
 
 
-        </div>
+        </Box>
     );
 };
