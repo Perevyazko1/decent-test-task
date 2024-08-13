@@ -1,8 +1,8 @@
 import React from 'react';
-import {MainPage} from "../pages/MainPage/MainPage";
-import {DetailPage} from "../pages/DetailPage/DetailPage";
 import {createTheme, ThemeProvider} from "@mui/material";
 import {Route, Routes} from "react-router-dom";
+import {MainPage} from "../pages/MainPage";
+import {DetailPage} from "../pages/DetailPage";
 
 
 function App() {

@@ -1,6 +1,5 @@
 import { ReactNode} from 'react';
-import {CustomTable} from "../../shared/ui/CustomTable/CustomTable";
-import {DetailPage} from "../DetailPage/DetailPage";
+import {CustomTable} from "../../../shared/ui/CustomTable/CustomTable";
 
 
 interface MainPageProps {
@@ -9,7 +8,7 @@ interface MainPageProps {
 }
 
 
-export const MainPage = (props: MainPageProps) => {
+const MainPage = (props: MainPageProps) => {
     const {
         className,
         children,
@@ -26,3 +25,4 @@ export const MainPage = (props: MainPageProps) => {
         </div>
     );
 };
+export default MainPage

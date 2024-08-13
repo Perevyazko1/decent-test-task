@@ -29,7 +29,7 @@ export interface CountriesType {
     timezones?: string[];
     continents: string[];
     flags: { png: string; svg: string };
-    coatOfArms?: {};
+    coatOfArms:  { png?: string; svg?: string };
     startOfWeek?: string;
     capitalInfo?: { latlng: number[] };
 }

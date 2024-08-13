@@ -1,9 +1,9 @@
 import {ReactNode, useEffect, useState} from 'react';
 import {Box, Button, Card, CardActions, CardContent, CardMedia, CircularProgress, Typography} from "@mui/material";
-import useAxios from "../../shared/hooks/useAxios/useAxios";
-import {CountriesType} from "../../entities/coutries/CoutriesType";
-import {useAppdispatch, useAppSelector} from "../../shared/hooks/Redux/redux";
-import {countryDetailSlice} from "../../providers/slice/CountrнDetailSlice/CountriesDetailSlice";
+import useAxios from "../../../shared/hooks/useAxios/useAxios";
+import {CountriesType} from "../../../entities/coutries/CoutriesType";
+import {useAppdispatch, useAppSelector} from "../../../shared/hooks/Redux/redux";
+import {countryDetailSlice} from "../../../providers/slice/CountrнDetailSlice/CountriesDetailSlice";
 import {Alert} from "@mui/lab";
 import {useParams} from "react-router-dom";
 
@@ -14,7 +14,7 @@ interface DetailPageProps {
 }
 
 
-export const DetailPage = (props: DetailPageProps) => {
+const DetailPage = (props: DetailPageProps) => {
     const {
         className,
         children,
@@ -47,7 +47,7 @@ export const DetailPage = (props: DetailPageProps) => {
 
     }, []);
     useEffect(() => {
-        console.log(countryDetail)
+        console.log(countryDetail[0])
     }, [countryDetail]);
 
 
@@ -57,40 +57,46 @@ export const DetailPage = (props: DetailPageProps) => {
                 bgcolor: 'background.paper',
                 width: "100vw",
                 height: "100vh"
+
             }}
         >
 
             {!loading && countryDetail[0] &&
-                <>
-                    <Card>
+                <Card>
+                    <Box sx={{display: "flex", height: "800px", width: "100%"}}>
                         <CardMedia
-                            sx={{height: 140}}
+                            sx={{
+                                height: "100%",
+                                width: countryDetail[0].coatOfArms?.svg ? "50%" : "100%"
+                            }}
                             image={countryDetail[0].flags.svg}
                             title={countryDetail[0]?.name?.common}
                         />
-                        <CardContent>
-                            <Typography gutterBottom variant="h5" component="div">
-                                {countryDetail[0]?.name?.common}
-                            </Typography>
-                            <Typography variant="h5" color="text.secondary">
-                                Population:{countryDetail[0]?.population}
-                            </Typography>
-                            <Typography variant="h5" color="text.secondary">
-                                Region:{countryDetail[0]?.region}
-                            </Typography>
-                        </CardContent>
-                    </Card>
-                    <Box
-                        component="iframe"
-                        src={countryDetail[0]?.maps.googleMaps}
-                        sx={{
-                            height: "70vh",
-                            border: 'none',
-                            width: "100vw"
-                        }}
-                    />
+                        {countryDetail[0].coatOfArms?.svg &&
+                            <CardMedia
+                                sx={{
+                                    height: "100%",
+                                    width: "50%"
+                                }}
+                                image={countryDetail[0].coatOfArms.svg}
+                                title={countryDetail[0]?.name?.common}
+                            />
 
-                </>
+                        }
+                    </Box>
+                    <CardContent>
+                        <Typography gutterBottom variant="h5" component="div">
+                            {countryDetail[0]?.name?.common}
+                        </Typography>
+                        <Typography variant="h5" color="text.secondary">
+                            Population:{countryDetail[0]?.population}
+                        </Typography>
+                        <Typography variant="h5" color="text.secondary">
+                            Region:{countryDetail[0]?.region}
+                        </Typography>
+                    </CardContent>
+
+                </Card>
 
 
             }
@@ -108,3 +114,4 @@ export const DetailPage = (props: DetailPageProps) => {
     )
         ;
 };
+export default DetailPage
